@@ -1,54 +1,77 @@
-## 访问数：![hello](https://views.whatilearened.today/views/github/sirpdboy/deplives.svg)[![](https://img.shields.io/badge/TG群-点击加入-FFFFFF.svg)](https://t.me/joinchat/AAAAAEpRF88NfOK5vBXGBQ)
-### 访问数：[![](https://visitor-badge.glitch.me/badge?page_id=sirpdboy-visitor-badge)] [![](https://img.shields.io/badge/TG群-点击加入-FFFFFF.svg)](https://t.me/joinchat/AAAAAEpRF88NfOK5vBXGBQ)
 
-欢迎来到sirpdboy的源码仓库！
-=
-# Lucky(大吉)
-
-本项目是 ([Lucky](https://github.com/gdy666/lucky)) 在 OpenWrt 上的移植。
-
-luci-app-lucky 动态域名ddns-go服务,替代socat主要用于公网IPv6 tcp/udp转内网ipv4,http/https反向代理
-
-[![若部分图片无法正常显示，请挂上机场浏览或点这里到末尾看修复教程](https://visitor-badge.glitch.me/badge?page_id=sirpdboy-visitor-badge)](#解决-github-网页上图片显示失败的问题) [![](https://img.shields.io/badge/TG群-点击加入-FFFFFF.svg)](https://t.me/joinchat/AAAAAEpRF88NfOK5vBXGBQ)
-
-[luci-app-lucky Lucky(大吉)](https://github.com/sirpdboy/luci-app-lucky)
-======================
+## 怎么确定当前系统CPU架构下载相应lucky核心包
+复制以下指令到终端执行,根据显示下载文件名含有架构字符串的ipk包
+```
+cd /tmp ;if [ -f /usr/bin/curl ];then curl -sSO http://release.66666.host/luckyarch.sh;else wget -O http://release.66666.host/luckyarch.sh;fi;sh luckyarch.sh 
+```
 
 
-请 **认真阅读完毕** 本页面，本页面包含注意事项和如何使用。
+## 1.X升级2.X版本注意
 
-## 功能说明：
+第一种方法：先通过lucky后台上传tar.gz方式升级lucky
+再安装
 
-### Lucky(大吉)
+- luci-app-lucky 
+- luci-i18n-lucky-zh-cn 
 
-#### 动态域名ddns-go服务,替代socat主要用于公网IPv6 tcp/udp转内网ipv4,http/https反向代理
+两个ipk包
 
-#### 在LUCI中可以配置访问端口和增加是否允许外网访问设置。
+第二种方法：
 
-<!-- TOC -->
+lucky后台备份配置下载保存后，将lucky相关IPK卸载干净
+```
+opkg remove lucky
+opkg remove luci-i18n-lucky-zh-cn
+opkg remove luci-app-lucky
+```
 
-- [lucky](#lucky)
-  - [使用方法](#使用方法)
-  - [说明](#说明)
-  - [问题](#常见问题)
-  - [界面](#界面)
-  - [捐助](#捐助)
- 
+再安装 
+- lucky 
+- luci-app-lucky 
+- luci-i18n-lucky-zh-cn 
 
-<!-- /TOC -->
+三个ipk包
+
+
+
+本分支本人自用,仅供参考.
+配置文件架构和https://github.com/sirpdboy/luci-app-lucky 版本可能存在冲突,
+
+替换版本前请使用前备份下载lucky配置
+
+然后执行执行
+```
+opkg remove lucky
+opkg remove luci-i18n-lucky-zh-cn
+opkg remove luci-app-lucky
+```
+卸载删除干净之前文件.
+
+
+
+
+最新版本编译好的IPK包请在
+https://url21.ctfile.com/d/44547821-55537427-a5525e?p=16601
+下载
+
+
+
+
 
 ## 使用方法
-
+   
 - 将luci-app-lucky添加至 LEDE/OpenWRT 源码的方法。
 
-### 下载源码方法:
 
- ```Brach
+
+### 下载源码：
+
+ ```Brach 
  
+    进入lede/openwrt项目根目录下
     # 下载源码
 	
-    git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
-    make menuconfig
+    git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 	
  ``` 
 ### 配置菜单
@@ -61,63 +84,14 @@ luci-app-lucky 动态域名ddns-go服务,替代socat主要用于公网IPv6 tcp/u
 ### 编译
 
  ```Brach 
-    # 编译固件
+    # 编译lucky IPK包
+    make package/lucky/lucky/compile V=s
+    # 编译luci-app-lucky IPK包
     make package/lucky/luci-app-lucky/compile V=s
+    
  ```
 
-## 说明
 
-- 源码来源：https://github.com/gdy666/lucky
-
-- 源码来源：https://github.com/sirpdboy/luci-app-lucky
-
-
-- 你可以随意使用其中的源码，但请注明出处。
-
-## 常见问题
-
- - 不同于防火墙端口转发规则,不要设置没有用上的端口,会增加内存的使用.
- - 小米路由 ipv4 类型的80和443端口被占用,但只设置监听tcp6(ipv6)的80/443端口转发规则完全没问题.
- - 如果需要使用白名单模式,请根据自身需求打开外网访问后台管理页面开关.
- - 转发规则启用异常,端口转发没有生效时请登录后台查看日志.
- - 开启外网访问可以直接修改配置文件中的"AllowInternetaccess": false, 将false改为true
-
-
-## 界面
-
-![screenshots](./doc/lucky1.png)
-
-![screenshots](./doc/lucky2.png)
-
-![screenshots](./doc/lucky3.png)
-
-# My other project
-
-- 路由安全看门狗 ：https://github.com/sirpdboy/luci-app-watchdog
-- 网络速度测试 ：https://github.com/sirpdboy/luci-app-netspeedtest
-- 计划任务插件（原定时设置） : https://github.com/sirpdboy/luci-app-taskplan
-- 关机功能插件 : https://github.com/sirpdboy/luci-app-poweroffdevice
-- opentopd主题 : https://github.com/sirpdboy/luci-theme-opentopd
-- kucat酷猫主题: https://github.com/sirpdboy/luci-theme-kucat
-- kucat酷猫主题设置工具: https://github.com/sirpdboy/luci-app-kucat-config
-- NFT版上网时间控制插件: https://github.com/sirpdboy/luci-app-timecontrol
-- 家长控制: https://github.com/sirpdboy/luci-theme-parentcontrol
-- 定时限速: https://github.com/sirpdboy/luci-app-eqosplus
-- 系统高级设置 : https://github.com/sirpdboy/luci-app-advanced
-- ddns-go动态域名: https://github.com/sirpdboy/luci-app-ddns-go
-- 进阶设置（系统高级设置+主题设置kucat/agron/opentopd）: https://github.com/sirpdboy/luci-app-advancedplus
-- 网络设置向导: https://github.com/sirpdboy/luci-app-netwizard
-- 一键分区扩容: https://github.com/sirpdboy/luci-app-partexp
-- lukcy大吉: https://github.com/sirpdboy/luci-app-lukcy
-
-## 捐助
-
-![screenshots](https://raw.githubusercontent.com/sirpdboy/openwrt/master/doc/说明3.jpg)
-
-|     <img src="https://img.shields.io/badge/-支付宝-F5F5F5.svg" href="#赞助支持本项目-" height="25" alt="图飞了😂"/>  |  <img src="https://img.shields.io/badge/-微信-F5F5F5.svg" height="25" alt="图飞了😂" href="#赞助支持本项目-"/>  | 
-| :-----------------: | :-------------: |
-|![xm1](https://raw.githubusercontent.com/sirpdboy/openwrt/master/doc/支付宝.png) | ![xm1](https://raw.githubusercontent.com/sirpdboy/openwrt/master/doc/微信.png) |
-
-<a href="#readme">
-    <img src="https://img.shields.io/badge/-返回顶部-orange.svg" alt="图飞了😂" title="返回顶部" align="right"/>
-</a>
+## 截图
+![](./previews/001.png)
+![](./previews/002.png)
