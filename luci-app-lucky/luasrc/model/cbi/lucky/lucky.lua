@@ -16,6 +16,10 @@ o = s:option( Value, "configdir", translate("Config dir path"),
 	translate("The path to store the config file"))
 o.placeholder = "/etc/config/lucky.daji"
 
+o = s:option(Value, "delayed_start", translate("Delayed Start (seconds)"))
+o.datatype = "and(uinteger,min(0))"
+o.default = "60"
+o.rmempty = false
 
 m.apply_on_parse = true
 m.on_after_apply = function(self,map)

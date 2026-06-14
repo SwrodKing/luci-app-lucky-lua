@@ -81,9 +81,6 @@ function lucky_set_config()
 		e.ret =setLuckyConf("AllowInternetaccess",value)
 	end
 
-
-
-
 	luci.http.prepare_content("application/json")
 	luci.http.write_json(e) 
 end
@@ -128,8 +125,6 @@ function GetLuckyConfigureObj()
 	return configObj
 end
 
-
-
 function setLuckyConf(key,value)
 	configPath = trim(luci.sys.exec("uci get lucky.@lucky[0].configdir"))
 
@@ -139,9 +134,7 @@ function setLuckyConf(key,value)
 		cmd = "/usr/bin/lucky ".." -setconf ".."-key "..key.." -cd "..configPath
 	end
 
-
 	luci.sys.exec(cmd)
 	
-
 	return 0
 end

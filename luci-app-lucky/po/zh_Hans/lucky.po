@@ -144,3 +144,6 @@ msgstr "禁止"
 
 msgid "Basic Settings"
 msgstr "基础设置"
+
+msgid "Delayed Start (seconds)"
+msgstr "开机延时启动（秒）"
