@@ -14,7 +14,7 @@ DEFAULT_PRO_CONF='/etc/lucky.daji/' #默认配置文件夹路径
 PRO_CONF=$DEFAULT_PRO_CONF
 CONFDIR=$PRO_CONF
 
-UCI_CONF=/etc/lucky
+UCI_CONF=/etc/config/lucky
 
 
 
