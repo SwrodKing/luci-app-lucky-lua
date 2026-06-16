@@ -1,5 +1,5 @@
 config lucky
         option enabled '0'
         option logger '1'
-        option configdir '/etc/config/lucky.daji'
+        option configdir '/etc/lucky.daji'
 		option delayed_start '60'

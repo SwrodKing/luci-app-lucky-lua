@@ -10,11 +10,11 @@ USE_PROCD=1
 
 PROG=/usr/bin/lucky
 
-DEFAULT_PRO_CONF='/etc/config/lucky.daji/' #默认配置文件夹路径
+DEFAULT_PRO_CONF='/etc/lucky.daji/' #默认配置文件夹路径
 PRO_CONF=$DEFAULT_PRO_CONF
 CONFDIR=$PRO_CONF
 
-UCI_CONF=/etc/config/lucky
+UCI_CONF=/etc/lucky
 
 
 

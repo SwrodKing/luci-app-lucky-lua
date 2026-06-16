@@ -14,7 +14,7 @@ s.anonymous=true
 
 o = s:option( Value, "configdir", translate("Config dir path"),
 	translate("The path to store the config file"))
-o.placeholder = "/etc/config/lucky.daji"
+o.placeholder = "/etc/lucky.daji"
 
 o = s:option(Value, "delayed_start", translate("Delayed Start (seconds)"))
 o.datatype = "and(uinteger,min(0))"
